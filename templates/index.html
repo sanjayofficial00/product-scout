@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Product Finder</title>
+    
+    <style>
+        .table-img {
+            width: 150px; /* Set the desired width */
+            height: auto; /* Automatically adjust the height */
+            /* border: 2px solid #333; Add a border with the desired style and color */
+        }
+        .main{
+            display: flex;
+            justify-content: space-between;
+        }
+        .first,.second{
+            width: 48%;
+        }
+    </style>
+
+  </head>
+  <body>
+    <div class="container pt-5">
+
+        <form action="/" method="POST">
+            <div class="form-group">
+              <!-- <label for="exampleInputPassword1">Search Box</label> -->
+              <h3> Find Product </h3>
+              <input type="text" class="form-control" id="exampleInputPassword1" name="title" placeholder="Searh................">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Search Now</button>
+          </form>
+
+          <div class="main">
+            <div class="first">
+                <table class="table mt-3">
+                  <thead class="thead-dark">
+                    <tr class="flipkart">
+                      <th scope="col">#</th>
+                      <th scope="col">Flipkart</th>
+                      <th scope="col">Product Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in flipkart_product_info_list %}
+                    <tr>
+                      <th scope="row">{{loop.index}}</th>
+                      <td>
+                        <img class="table-img" src="{{i["Image"]}}" alt="">
+                      </td>
+                      <td>                        
+                        <p>{{i["Name"]}}</p>
+                        <p>Rating: {{i["Rating"]}} out of 5 stars</p>
+                        <p>Price: {{i["Price"]}}</p>
+                        <p>
+                            {% if "https" in i["Link"] %}
+                            <a href="{{ i['Link'] }}" class="btn btn-primary btn-lg btn-block">Buy</a>
+                            {% else %}
+                            <span class="text-danger">Link Not Found</span>
+                            {% endif %}
+                        </p>
+                      </td>
+                      <td>
+                        
+                    </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>        
+            </div>
+            <div class="second">
+                <table class="table mt-3">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Amazon</th>
+                      <th scope="col">Product Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in amazon_product_info_list %}
+                    <tr>
+                      <th scope="row">{{loop.index}}</th>
+                      <td>
+                        <img class="table-img" src="{{i["Image"]}}" alt="">
+                      </td>
+                      <td>   
+                        <p>{{i["Name"]}}</p>
+                        <p>Rating: {{i["Rating"]}}</p>
+                        <p>Price: ₹{{i["Price"]}}</p>
+                        <p>
+                            {% if "https" in i["Link"] %}
+                            <a href="{{i['Link']}}" class="btn btn-primary btn-lg btn-block">Buy</a>
+                            {% else %}
+                            <span class="text-danger">Link Not Found</span>
+                            {% endif %}
+                        </p>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>                
+            </div>
+          </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

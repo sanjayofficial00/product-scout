@@ -1,0 +1,16 @@
+for i in all_data:
+        product_names.append(i.find_all("div",class_="_4rR01T"))
+        product_rating.append(i.find_all("div",class_="_3LWZlK"))
+        product_price.append(i.find_all("div",class_="_30jeq3 _1_WHN1"))
+        product_images = i.find_all("img",class_="_396cs4")
+        product_links = i.find_all("a",class_="_1fQZEK")
+    
+        for link in product_links:
+            product_links = f"https://{web_url}{link['href']}"
+            product_buy_link.append(product_links)
+    
+        product_images = i.find_all("img",class_="_396cs4")
+    
+        for img in product_images:
+            product_images = img['src']
+            product_images_link.append(product_images)
